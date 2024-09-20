@@ -11,6 +11,8 @@ export namespace Components {
     interface MyArray {
         "dataItems": string[];
         "itemValue": string;
+        "showPrompt": () => Promise<number>;
+        "thingToDo": string;
     }
     interface MyComponent {
         /**
@@ -59,6 +61,7 @@ declare namespace LocalJSX {
     interface MyArray {
         "dataItems"?: string[];
         "itemValue"?: string;
+        "thingToDo"?: string;
     }
     interface MyComponent {
         /**

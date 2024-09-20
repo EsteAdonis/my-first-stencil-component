@@ -1,4 +1,4 @@
-import {Component, h, Listen, Prop, State} from '@stencil/core';
+import {Component, h, Listen, Prop, State, Host, Element, Method} from '@stencil/core';
 
 @Component({
   tag:'my-array',
@@ -7,7 +7,9 @@ import {Component, h, Listen, Prop, State} from '@stencil/core';
 export class MyArray {
   @Prop({ mutable: true }) itemValue: string;
   @Prop({ mutable: true }) dataItems: string[];
-  
+  @Prop() thingToDo: string;
+
+  @Element() el!:HTMLElement;
 
   @Listen('keydown')
   handleKeyDow(ev: KeyboardEvent) {
@@ -16,7 +18,12 @@ export class MyArray {
       this.itemValue = "";
     }
   }
-  
+
+  @Method()
+  async showPrompt() {
+    return 60;
+  }
+    
   private handleAddItem(e:any) {
     this.itemValue = e.target.value;
   }
@@ -26,9 +33,11 @@ export class MyArray {
   }
   
   render(){
-    return <div>
+    return <Host>
+      <h3>{this.thingToDo}</h3>
       <ul>
-        {this.dataItems.map((item, index) => <li key={index} onClick={()=>this.handleRemoveItem(index)}>{item}</li>)}
+        {this.dataItems.map((item, index) => 
+                              <li key={index} onClick={()=>this.handleRemoveItem(index)}>{item}</li>)}
       </ul>   
 
       <input 
@@ -36,6 +45,6 @@ export class MyArray {
         value={this.itemValue}
         onInput={(e)=>this.handleAddItem(e)}
       ></input>
-    </div>
+    </Host>
   }
 }
