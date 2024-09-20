@@ -3,6 +3,12 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+    <style>
+      body {
+        color:white;
+        background-color: rgb(42, 40, 40);
+      }
+    </style>
     <title>Stencil Component Starter</title>
 
     <script type="module" src="/build/my-first-stencil-component.esm.js"></script>
@@ -10,5 +16,14 @@
   </head>
   <body>
     <my-component first="Stencil" last="'Don't call me a framework' JS"></my-component>
+    <custom-clock></custom-clock>
+    <my-array></my-array>
+
+    
+    <script type="text/javascript">
+      const myArray = document.querySelector('my-array');
+      myArray.dataItems = ['One', 'Two', 'Tree', 'Four', 'Banana', 'Pineapple','WaterMelon', 'Strawberry'];
+    </script>
+
   </body>
 </html>

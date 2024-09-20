@@ -6,6 +6,12 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface CustomClock {
+    }
+    interface MyArray {
+        "dataItems": string[];
+        "itemValue": string;
+    }
     interface MyComponent {
         /**
           * The first name
@@ -19,9 +25,22 @@ export namespace Components {
           * The middle name
          */
         "middle": string;
+        "myMethod": () => Promise<number>;
     }
 }
 declare global {
+    interface HTMLCustomClockElement extends Components.CustomClock, HTMLStencilElement {
+    }
+    var HTMLCustomClockElement: {
+        prototype: HTMLCustomClockElement;
+        new (): HTMLCustomClockElement;
+    };
+    interface HTMLMyArrayElement extends Components.MyArray, HTMLStencilElement {
+    }
+    var HTMLMyArrayElement: {
+        prototype: HTMLMyArrayElement;
+        new (): HTMLMyArrayElement;
+    };
     interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
     }
     var HTMLMyComponentElement: {
@@ -29,10 +48,18 @@ declare global {
         new (): HTMLMyComponentElement;
     };
     interface HTMLElementTagNameMap {
+        "custom-clock": HTMLCustomClockElement;
+        "my-array": HTMLMyArrayElement;
         "my-component": HTMLMyComponentElement;
     }
 }
 declare namespace LocalJSX {
+    interface CustomClock {
+    }
+    interface MyArray {
+        "dataItems"?: string[];
+        "itemValue"?: string;
+    }
     interface MyComponent {
         /**
           * The first name
@@ -48,6 +75,8 @@ declare namespace LocalJSX {
         "middle"?: string;
     }
     interface IntrinsicElements {
+        "custom-clock": CustomClock;
+        "my-array": MyArray;
         "my-component": MyComponent;
     }
 }
@@ -55,6 +84,8 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "custom-clock": LocalJSX.CustomClock & JSXBase.HTMLAttributes<HTMLCustomClockElement>;
+            "my-array": LocalJSX.MyArray & JSXBase.HTMLAttributes<HTMLMyArrayElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
         }
     }
