@@ -7,6 +7,12 @@ import {Component, h, Listen, Prop, State, Host, Element, Method} from '@stencil
 export class MyArray {
   @Prop({ mutable: true }) itemValue: string;
   @Prop({ mutable: true }) dataItems: string[];
+  
+  @Prop({ 
+    mutable: true, 
+    attribute: 'completed', 
+    reflect: true }) isComplete = true;
+
   @Prop() thingToDo: string;
 
   @Element() el!:HTMLElement;
@@ -36,8 +42,9 @@ export class MyArray {
     return <Host>
       <h3>{this.thingToDo}</h3>
       <ul>
-        {this.dataItems.map((item, index) => 
-                              <li key={index} onClick={()=>this.handleRemoveItem(index)}>{item}</li>)}
+        {this.dataItems
+              .map((item, index) => 
+                   <li key={index} onClick={()=>this.handleRemoveItem(index)}>{item}</li>)}
       </ul>   
 
       <input 

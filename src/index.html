@@ -23,12 +23,13 @@
     <script type="text/javascript">
       const myArray = document.querySelector('my-array');
       myArray.dataItems = ['One', 'Two', 'Tree', 'Four', 'Banana', 'Pineapple','WaterMelon', 'Strawberry'];
+      console.log('Completed: ', myArray.completed );
 
-      (async() => {
-        await customElements.whenDefined('my-array');
-        const myElement = document.querySelector('my-array');
-        await myElement.showPrompt();
-      })();
+      // (async() => {
+      //   await customElements.whenDefined('my-array');
+      //   const myElement = document.querySelector('my-array');
+      //   await myElement.completed;
+      // })();
     </script>
 
   </body>
